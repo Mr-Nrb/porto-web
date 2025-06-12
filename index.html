@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iqbal's Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #273F4F;
+      --accent: #FE7743;
+      --light: #EFEEEA;
+      --radius: 8px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--primary);
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+
+    nav {
+      background-color: var(--primary);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    nav .brand {
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    nav .brand:hover {
+      color: var(--accent);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, var(--light) 60%, var(--accent) 40%);
+      flex-wrap: wrap;
+      min-height: calc(100vh - 68px);
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 300px;
+      padding-right: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero .cta-button {
+      display: inline-block;
+      background-color: var(--accent);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .hero .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    }
+
+    .hero img {
+      width: 280px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 5px solid white;
+      transition: var(--transition);
+    }
+
+    .hero img:hover {
+      transform: scale(1.03);
+    }
+
+    section {
+      padding: 2.5rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      text-align: center;
+      position: relative;
+      font-size: 2rem;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background-color: var(--accent);
+      margin: 0.5rem auto 0;
+    }
+
+    .portfolio-container {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .projects-carousel {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 1rem 0;
+      -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+    }
+
+    .projects-carousel::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .projects-carousel::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.05);
+      border-radius: 10px;
+    }
+
+    .projects-carousel::-webkit-scrollbar-thumb {
+      background-color: var(--accent);
+      border-radius: 10px;
+    }
+
+    .card {
+      flex: 0 0 280px;
+      scroll-snap-align: start;
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: var(--transition);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      transition: var(--transition);
+    }
+
+    .card:hover img {
+      transform: scale(1.03);
+    }
+
+    .card p {
+      font-weight: 500;
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+
+    .card small {
+      color: #666;
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .carousel-nav button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .carousel-nav button:hover {
+      background-color: var(--accent);
+      transform: scale(1.1);
+    }
+
+    .carousel-nav button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .card {
+        flex: 0 0 240px;
+      }
+      
+      .portfolio-container {
+        padding: 0 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        flex: 0 0 220px;
+      }
+      
+      .carousel-nav button {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .skill-card {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: var(--transition);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .skill-card h3 {
+      margin-bottom: 1.2rem;
+      text-align: center;
+      color: var(--accent);
+    }
+
+    .skill-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .skill-card li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0.8rem 0;
+      font-size: 1rem;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    .skill-card li:hover {
+      background-color: rgba(254, 119, 67, 0.1);
+    }
+
+    .skill-card i {
+      font-size: 1.3rem;
+      width: 30px;
+      text-align: center;
+    }
+
+    footer {
+      background-color: var(--primary);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .social-links {
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: white;
+      margin: 0 0.5rem;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .btn-floating {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 99;
+    }
+
+    .btn-floating a {
+      background-color: var(--accent);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      text-decoration: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
+    }
+
+    .btn-floating a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+
+    /* Section spacing */
+    .section-spacing {
+      margin: auto;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      nav .brand {
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+      
+      .hero {
+        padding: 2rem 1rem;
+        text-align: center;
+        flex-direction: column;
+      }
+      
+      .hero-content {
+        padding-right: 0;
+        margin-bottom: 2rem;
+      }
+      
+      .hero img {
+        width: 200px;
+      }
+      
+      section {
+        padding: 2rem 1rem;
+      }
+      
+      .projects {
+        grid-template-columns: 1fr;
+      }
+      
+      .btn-floating {
+        right: 10px;
+        bottom: 10px;
+      }
+      
+      .btn-floating a {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav a {
+        margin: 0 0.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .view-details {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="brand animate">Porto Web</div>
+    <div>
+      <a href="#about" class="animate delay-1">About</a>
+      <a href="#portfolio" class="animate delay-2">Projects</a>
+      <a href="#skills" class="animate delay-3">Skills</a>
+      <a href="hobby.html" class="animate delay-3">Hobbies</a>
+    </div>
+  </nav>
+
+  <div class="hero" id="hero">
+    <div class="hero-content animate">
+      <h1>Hi, I'm Iqbal Harsya Putra</h1>
+      <p>A passionate full-stack developer specializing in Laravel and JavaScript with a keen eye for design.</p>
+      <a href="#contact" class="cta-button">Get in Touch</a>
+    </div>
+    <img src="assets/me.jpg" alt="Profile Picture" class="animate delay-1" />
+  </div>
+
+  <section id="about" class="section-spacing">
+    <h2 class="animate">About Me</h2>
+    <div class="animate delay-1">
+      <p>With 3 years of experience in web development, I specialize in creating efficient, scalable, and user-friendly applications. My approach combines technical expertise with creative problem-solving to deliver exceptional digital experiences.</p>
+      <p class="section-spacing">When I'm not coding, you can find me exploring trying technologies, playing some online video games, and playing basketball with friends.</p>
+    </div>
+  </section>
+
+  <section id="portfolio" class="section-spacing">
+    <h2 class="animate">My Projects</h2>
+    <div class="portfolio-container">
+      <div class="projects-carousel" id="projectsCarousel">
+        <div class="card animate">
+          <img src="assets/logo_siuk_kotak.jpeg" alt="Inventory Manager">
+          <p>SIUKOM</p>
+          <a href="siukom.id"><button class="view-details">View Details</button></a>
+        </div>
+        <div class="card animate delay-1">
+          <img src="assets/lspbandung.png" alt="Freelance Quest">
+          <p>SITILING</p>
+          <a href="lspbbpvpbandung.or.id"><button class="view-details">View Details</button></a>
+        </div>
+        <div class="card animate delay-2">
+          <img src="assets/afiliasi.jpg" alt="Data Insights">
+          <p>UNIVERSITY AFFILIATE</p>
+          <a href="afiliasi.ipwija.ac.id"><button class="view-details">View Details</button></a>
+        </div>
+        <div class="card animate delay-3">
+          <!-- <img src="" alt="E-Commerce Platform"> -->
+          <p>GUARDA</p>
+          <a href=""><button class="view-details">Coming Soon</button></a>
+        </div>
+      </div>
+      <div class="carousel-nav">
+        <button id="prevBtn" aria-label="Previous projects"><i class="fas fa-chevron-left"></i></button>
+        <button id="nextBtn" aria-label="Next projects"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section-spacing">
+    <h2 class="animate">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card animate">
+        <h3>Programming</h3>
+        <ul>
+          <li><i class="fab fa-php" style="color:#8892BF;"></i> PHP</li>
+          <li><i class="fab fa-js-square" style="color:#F0DB4F;"></i> JavaScript</li>
+          <li><i class="fab fa-python" style="color:#4B8BBE;"></i> Python</li>
+          <li><i class="fas fa-code" style="color:#1572B6;"></i> HTML/CSS</li>
+        </ul>
+      </div>
+      <div class="skill-card animate delay-1">
+        <h3>Frameworks</h3>
+        <ul>
+          <li><i class="fab fa-laravel" style="color:#F05340;"></i> Laravel</li>
+        </ul>
+      </div>
+      <div class="skill-card animate delay-2">
+        <h3>Design</h3>
+        <ul>
+          <li><i class="fab fa-bootstrap" style="color:#563D7C;"></i> Bootstrap</li>
+          <li><i class="fas fa-wind" style="color:#38B2AC;"></i> Tailwind</li>
+          <li><i class="fab fa-figma" style="color:#F24E1E;"></i> Figma</li>
+          <li><i class="fas fa-paint-brush" style="color:#FF6B6B;"></i> UI/UX</li>
+        </ul>
+      </div>
+      <div class="skill-card animate delay-3">
+        <h3>Tools & DB</h3>
+        <ul>
+          <li><i class="fas fa-database" style="color:#00758F;"></i> MySQL</li>
+          <li><i class="fas fa-server" style="color:#5D6975;"></i> Adminer</li>
+          <li><i class="fab fa-git-alt" style="color:#F05032;"></i> Git</li>
+          <li><i class="fas fa-terminal" style="color:#4D4D4D;"></i> CLI</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <p>Wanna Collaborate  ?</p>
+    <p>Contact me at: <a href="mailto:iqbal@example.com" style="color: var(--accent);">penjualoncom@gmail.com</a></p>
+    <div class="social-links">
+      <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <!-- <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a> -->
+      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p class="section-spacing" style="margin-top: 1.5rem; font-size: 0.9rem;">&copy; 2025 Iqbal Harsya Putra. All rights reserved.</p>
+  </footer>
+
+  <div class="btn-floating">
+    <a href="#hero" title="Back to Top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+    <a href="https://wa.me/62895320031530" title="Chat WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Back to top button visibility
+    window.addEventListener('scroll', function() {
+      const backToTop = document.getElementById('backToTop');
+      if (window.pageYOffset > 300) {
+        backToTop.style.display = 'flex';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+
+    // Initialize back to top button
+    document.getElementById('backToTop').style.display = 'none';
+
+    // Animation on scroll
+    const animateElements = document.querySelectorAll('.animate');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    animateElements.forEach(element => {
+      element.style.opacity = 0;
+      element.style.transform = 'translateY(20px)';
+      element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(element);
+    });
+
+    // Card click effect
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', function() {
+        this.style.transform = 'translateY(-5px) scale(1.02)';
+        setTimeout(() => {
+          this.style.transform = 'translateY(-5px)';
+        }, 300);
+      });
+    });
+  </script>
+   <script>
+    // Previous JavaScript remains the same, add this new code:
+
+    // Carousel functionality
+    const carousel = document.getElementById('projectsCarousel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const cardWidth = document.querySelector('.card').offsetWidth;
+    const gap = 24; // 1.5rem in pixels
+    
+    let currentPosition = 0;
+    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+    // Update button states
+    function updateButtons() {
+      prevBtn.disabled = currentPosition === 0;
+      nextBtn.disabled = currentPosition >= maxScroll;
+    }
+
+    // Scroll carousel
+    function scrollCarousel(direction) {
+      const scrollAmount = (cardWidth + gap) * direction;
+      currentPosition += scrollAmount;
+      
+      // Boundary checks
+      currentPosition = Math.max(0, Math.min(currentPosition, maxScroll));
+      
+      carousel.scrollTo({
+        left: currentPosition,
+        behavior: 'smooth'
+      });
+      
+      updateButtons();
+    }
+
+    // Button event listeners
+    prevBtn.addEventListener('click', () => scrollCarousel(-1));
+    nextBtn.addEventListener('click', () => scrollCarousel(1));
+
+    // Update buttons on load and resize
+    window.addEventListener('resize', () => {
+      currentPosition = carousel.scrollLeft;
+      updateButtons();
+    });
+
+    updateButtons();
+
+    // View details button functionality
+    document.querySelectorAll('.view-details').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const projectTitle = e.target.closest('.card').querySelector('p').textContent;
+        alert(`Details for ${projectTitle} would be shown here. In a real implementation, this could open a modal or navigate to a project page.`);
+      });
+    });
+
+    // Card click functionality
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        const projectTitle = card.querySelector('p').textContent;
+        console.log(`Project "${projectTitle}" clicked`);
+        // You could add more functionality here, like navigating to a project page
+      });
+    });
+  </script>
+</body>
+</html>

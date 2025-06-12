@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Hobbies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #273F4F;
+      --accent: #FE7743;
+      --light: #EFEEEA;
+      --radius: 8px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--primary);
+      line-height: 1.6;
+    }
+
+    .hobbies-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      position: relative;
+    }
+
+    h1::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background-color: var(--accent);
+      margin: 0.5rem auto 0;
+    }
+
+    .hobby-section {
+      background-color: white;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      transition: var(--transition);
+    }
+
+    .hobby-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+    }
+
+    .hobby-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .hobby-icon {
+      width: 60px;
+      height: 60px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1.5rem;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .hobby-title {
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+
+    .hobby-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .hobby-text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .hobby-text p {
+      margin-bottom: 1rem;
+    }
+
+    .hobby-media {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .media-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: var(--transition);
+    }
+
+    .media-card:hover {
+      transform: scale(1.02);
+    }
+
+    .media-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .media-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 0.8rem;
+      font-size: 0.9rem;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .game-card {
+      background-color: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: var(--transition);
+    }
+
+    .game-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .game-info {
+      padding: 1rem;
+    }
+
+    .game-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .game-genre {
+      display: inline-block;
+      background-color: var(--light);
+      color: var(--primary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .highlight {
+      background-color: rgba(254, 119, 67, 0.2);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .hobby-content {
+        flex-direction: column;
+      }
+      
+      .hobby-text, .hobby-media {
+        min-width: 100%;
+      }
+      
+      .hobby-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .hobby-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hobbies-container">
+    <h1>My Hobbies</h1>
+    
+    <!-- Basketball Section -->
+    <section class="hobby-section">
+      <div class="hobby-header">
+        <div class="hobby-icon">
+          <i class="fas fa-basketball-ball"></i>
+        </div>
+        <h2 class="hobby-title">Basketball</h2>
+      </div>
+      
+      <div class="hobby-content">
+        <div class="hobby-text">
+          <p>I started playing basketball in junior high school and continue to this day. At first, I played just for fun, but when I entered junior high, I began competing for my school team.</p>
+          
+          <p>After graduating, I enrolled in a vocational high school majoring in Software Engineering. While I didn't have time for competitive play during this period, I still enjoyed casual games with friends. Occasionally, I helped train players at my former junior high school.</p>
+          
+          <p>I believe physical sports are essential for my health, especially since my current job as a web developer involves long hours of sitting with minimal movement. Basketball keeps me active and helps maintain my physical well-being.</p>
+        </div>
+        
+        <div class="hobby-media">
+          <div class="media-card">
+            <img src="https://source.unsplash.com/600x400/?basketball,game" alt="Basketball Game">
+            <div class="media-caption">Playing basketball helps me stay active despite my sedentary job</div>
+          </div>
+          
+          <div class="media-card">
+            <img src="assets/train-b.jpg" alt="Basketball Training">
+            <div class="media-caption">Occasionally helping train younger players at my old school</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Gaming Section -->
+    <section class="hobby-section">
+      <div class="hobby-header">
+        <div class="hobby-icon">
+          <i class="fas fa-gamepad"></i>
+        </div>
+        <h2 class="hobby-title">Online Gaming</h2>
+      </div>
+      
+      <div class="hobby-content">
+        <div class="hobby-text">
+          <p>Besides basketball, I enjoy playing various genres of online games, particularly <span class="highlight">MOBA</span> and <span class="highlight">RPG</span> games. The only MOBA game I play is Mobile Legends: Bang Bang (MLBB). Through this game, I've learned about the importance of team communication, cooperation, and understanding the <span class="highlight">META</span> (Most Efficient Tactic Available).</p>
+          
+          <p>I've met many friends through MLBB and eventually formed my own party. We typically play together every weekend night, creating memorable gaming sessions.</p>
+          
+          <p>However, playing only competitive MOBA games can sometimes be stressful due to the demands of teamwork and keeping up with the META. That's why when I want to relax, I switch to RPG games like <span class="highlight">Honkai: Star Rail</span> and <span class="highlight">Genshin Impact</span>. These games offer captivating stories and beautiful music that make the experience enjoyable. While they do have META elements, RPGs provide the option to play casually without competitive pressure, making them the perfect alternative when I need a more relaxed gaming experience.</p>
+        </div>
+        
+        <div class="hobby-media">
+          <h3 style="margin-bottom: 0.5rem;">My Favorite Games</h3>
+          <div class="game-grid">
+            <div class="game-card">
+              <img src="assets/mlbb.jpg" alt="Mobile Legends">
+              <div class="game-info">
+                <div class="game-title">Mobile Legends: Bang Bang</div>
+                <p>Competitive MOBA that taught me teamwork and strategy</p>
+                <span class="game-genre">MOBA</span>
+              </div>
+            </div>
+            
+            <div class="game-card">
+              <img src="assets/hsr.png" alt="Honkai Star Rail">
+              <div class="game-info">
+                <div class="game-title">Honkai: Star Rail</div>
+                <p>Immersive RPG with stunning visuals and story</p>
+                <span class="game-genre">RPG</span>
+              </div>
+            </div>
+            
+            <div class="game-card">
+              <img src="assets/gi.jpeg" alt="Genshin Impact">
+              <div class="game-info">
+                <div class="game-title">Genshin Impact</div>
+                <p>Beautiful open-world adventure with relaxing gameplay</p>
+                <span class="game-genre">RPG</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Simple animation on scroll
+    const hobbySections = document.querySelectorAll('.hobby-section');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    hobbySections.forEach(section => {
+      section.style.opacity = 0;
+      section.style.transform = 'translateY(20px)';
+      section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(section);
+    });
+
+    // Add hover effect to game cards
+    document.querySelectorAll('.game-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.querySelector('img').style.transform = 'scale(1.05)';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.querySelector('img').style.transform = 'scale(1)';
+      });
+    });
+  </script>
+</body>
+</html>
